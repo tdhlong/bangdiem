@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    outline: none;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+}
+
+ul, li {
+    list-style: none;
+}
+
+/* Header section */
+.header-container {
+    display: flex;
+    justify-content: center;
+}
+
+.header-logo {
+    width: 100%;
+    height: 113px;
+    object-fit: contain;
+    margin: 30px 0;
+}
+
+/* Main section */
+.main {
+    background-color: #9e1c24;
+}
+
+.main-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 160px;
+}
+
+.main-logo {
+    width: 50px;
+    height: 50px;
+    margin-top: 60px;
+}
+
+.main-title {
+    font-size: 60px;
+    color: #fef8dc;
+    text-transform: capitalize;
+    padding: 30px 0;
+}
+
+.row {
+    width: 100%;
+}
+
+.person-list {
+    color: #fff;
+}
+
+.person {
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    margin-bottom: 18px;
+    background-color: #2d3e50;
+}
+
+.avatar {
+    padding: 21px;
+    border-radius: 4px;
+    color: #000;
+    background-color: #fff8dc;
+}
+
+.nickname {
+    flex: 1;
+    padding-left: 20px;
+    font-size: 30px;
+}
+
+.score {
+    font-size: 50px;
+    padding: 0 30px;
+    border-radius: 4px;
+    background-color: #dc3546;
+}
+
+/* Footer section */
+.footer {
+    display: flex;
+    justify-content: center;
+    background: #e9063c;
+    padding: 30px 0;
+}
+
+.footer-content-first {
+    display: flex;
+    justify-content: center;
+}
+
+.footer-content {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+}
