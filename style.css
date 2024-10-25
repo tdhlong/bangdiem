@@ -21,15 +21,21 @@ ul, li {
 
 .header-logo {
     width: 100%;
-    height: 113px;
+    height: 144px;
+    padding: 20px 0;
     object-fit: contain;
-    margin: 30px 0;
+    background: #b21c25;
 }
 
 /* Main section */
 .main {
-    padding-bottom: 160px;
-    background-color: #9e1c24;
+    padding-bottom: 40px;
+    background-color: #FFDBAC;
+    /* #FFDBAC */
+    /* #6869ce */
+    /* #3b3ca6 */
+    /* #5152bf */
+    /* #9b8975 */
 }
 
 .main-content {
@@ -47,10 +53,12 @@ ul, li {
 }
 
 .main-title {
-    font-size: 60px;
-    color: #fef8dc;
+    font-size: 50px;
+    color: #2d2828;
+    /* #2d2828 */
+    /* #fef8dc */
     text-transform: capitalize;
-    padding: 30px 0 40px 0;
+    padding: 20px 0 20px 0;
 }
 
 .row {
@@ -71,10 +79,9 @@ ul, li {
 }
 
 .avatar {
-    padding: 21px;
-    border-radius: 4px;
-    color: #000;
-    background-color: #fff8dc;
+    object-fit: cover;
+    width: 100px;
+    height: 63px;
 }
 
 .nickname {
