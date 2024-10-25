@@ -28,6 +28,7 @@ ul, li {
 
 /* Main section */
 .main {
+    padding-bottom: 160px;
     background-color: #9e1c24;
 }
 
@@ -36,7 +37,7 @@ ul, li {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 0 160px;
+    margin: 0 300px;
 }
 
 .main-logo {
@@ -49,7 +50,7 @@ ul, li {
     font-size: 60px;
     color: #fef8dc;
     text-transform: capitalize;
-    padding: 30px 0;
+    padding: 30px 0 40px 0;
 }
 
 .row {
@@ -57,6 +58,7 @@ ul, li {
 }
 
 .person-list {
+    position: relative;
     color: #fff;
 }
 
@@ -77,15 +79,56 @@ ul, li {
 
 .nickname {
     flex: 1;
-    padding-left: 20px;
+    padding-left: 30px;
     font-size: 30px;
 }
 
 .score {
     font-size: 50px;
     padding: 0 30px;
-    border-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    transition: 0.3s ease;
     background-color: #dc3546;
+}
+
+.score:hover {
+    cursor: pointer;
+    background-color: #bb3b48;
+}
+
+.point-btn {
+    display: flex;
+    position: absolute;
+    right: 106px;
+    color: #fff;
+}
+
+.point-add {
+    display: none;
+    opacity: 0;
+    background-color: #4CAF50;
+}
+
+.point-add:hover {
+    background-color: #45a049;
+}
+
+.point-subtract {
+    display: none;
+    opacity: 0;
+    background-color: #F44336;
+}
+
+.point-subtract:hover {
+    background-color: #d32f2f;
+}
+
+.point-add, .point-subtract {
+    transition: 0.3s ease;
+    font-size: 28px;
+    padding: 14px 30px;
+    cursor: pointer;
 }
 
 /* Footer section */

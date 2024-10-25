@@ -8,7 +8,7 @@
     <title>Bảng điểm - Quốc tế Á Châu</title>
 </head>
 <body>
-    <!-- Header section -->
+    <!-- Header -->
     <header class="header">
         <div class="header-content">
             <div class="header-container">
@@ -17,7 +17,7 @@
         </div>
     </header>
         
-    <!-- Main section -->
+    <!-- Main -->
     <div class="main">
         <div class="main-content">
             <img class="main-logo" src="https://cdn-icons-png.flaticon.com/512/5078/5078755.png" alt="" />
@@ -27,42 +27,45 @@
                     <li class="person">
                         <p class="avatar">Avatar</p>
                         <p class="nickname">Người chơi 1</p>
-                        <p class="score">15</p>
+                        <p class="score" onclick="fadeInOut(this)">15</p>
+                        <ul class="point-btn">
+                            <li id="point-add" class="point-add">+1</li>
+                            <li id="point-subtract" class="point-subtract">-1</li>
+                        </ul>
                     </li>
-                </ul>
-                <ul class="person-list">
                     <li class="person">
                         <p class="avatar">Avatar</p>
-                        <p class="nickname">Người chơi 1</p>
-                        <p class="score">15</p>
+                        <p class="nickname">Người chơi 2</p>
+                        <p class="score" onclick="fadeInOut(this)">15</p>
+                        <ul class="point-btn">
+                            <li id="point-add" class="point-add">+1</li>
+                            <li id="point-subtract" class="point-subtract">-1</li>
+                        </ul>
                     </li>
-                </ul>
-                <ul class="person-list">
                     <li class="person">
                         <p class="avatar">Avatar</p>
-                        <p class="nickname">Người chơi 1</p>
-                        <p class="score">15</p>
+                        <p class="nickname">Người chơi 3</p>
+                        <p class="score" onclick="fadeInOut(this)">15</p>
+                        <ul class="point-btn">
+                            <li id="point-add" class="point-add">+1</li>
+                            <li id="point-subtract" class="point-subtract">-1</li>
+                        </ul>
                     </li>
-                </ul>
-                <ul class="person-list">
                     <li class="person">
                         <p class="avatar">Avatar</p>
-                        <p class="nickname">Người chơi 1</p>
-                        <p class="score">15</p>
-                    </li>
-                </ul>
-                <ul class="person-list">
-                    <li class="person">
-                        <p class="avatar">Avatar</p>
-                        <p class="nickname">Người chơi 1</p>
-                        <p class="score">15</p>
+                        <p class="nickname">Người chơi 4</p>
+                        <p class="score" onclick="fadeInOut(this)">15</p>
+                        <ul class="point-btn">
+                            <li id="point-add" class="point-add">+1</li>
+                            <li id="point-subtract" class="point-subtract">-1</li>
+                        </ul>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <!-- Footer section -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <p class="footer-content-first">Công cụ online cho Trường Quốc tế Á Châu</p>
@@ -70,5 +73,8 @@
             <p>Copyright © 2013 The Asian International School. All rights reserved</p>
         </div>
     </footer>
+
+    <!-- Javascript script -->
+     <script src="script.js"></script>
 </body>
 </html>
