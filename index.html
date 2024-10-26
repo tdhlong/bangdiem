@@ -22,41 +22,40 @@
         <div class="main-content">
             <h1 class="main-title">Bảng điểm</h1>
             <div class="row">
+                <!-- Danh sách người chơi -->
                 <ul class="person-list">
+                    <!-- Người chơi -->
                     <li class="person">
                         <img class="avatar" src="./img/conghoa.ico" alt="" />
                         <p class="nickname">Người chơi 1</p>
-                        <p class="score" onclick="fadeInOut(this)">15</p>
+                        <p class="score" onclick="fadeInOut(this)">10</p>
                         <ul class="point-btn">
-                            <li id="point-add" class="point-add">+</li>
-                            <li id="point-subtract" class="point-subtract">-</li>
-                        </ul>
-                    </li>
-                    <li class="person">
-                        <img class="avatar" src="./img/caothang.ico" alt="" />
-                        <p class="nickname">Người chơi 1</p>
-                        <p class="score" onclick="fadeInOut(this)">15</p>
-                        <ul class="point-btn">
-                            <li id="point-add" class="point-add">+</li>
-                            <li id="point-subtract" class="point-subtract">-</li>
-                        </ul>
-                    </li>
-                    <li class="person">
-                        <img class="avatar" src="./img/nguyen-van-huong.ico" alt="" />
-                        <p class="nickname">Người chơi 1</p>
-                        <p class="score" onclick="fadeInOut(this)">15</p>
-                        <ul class="point-btn">
-                            <li id="point-add" class="point-add">+</li>
-                            <li id="point-subtract" class="point-subtract">-</li>
-                        </ul>
-                    </li>
-                    <li class="person">
-                        <img class="avatar" src="./img/vanthanh.ico" alt="" />
-                        <p class="nickname">Người chơi 1</p>
-                        <p class="score" onclick="fadeInOut(this)">15</p>
-                        <ul class="point-btn">
-                            <li id="point-add" class="point-add">+</li>
-                            <li id="point-subtract" class="point-subtract">-</li>
+                            <ul class="point-add" onclick="FadeInAdd(this)">+</ul>
+                            <div class="add-section">
+                                <li class="add-value" onclick="ChangeScore(this)">+10</li>
+                                <li class="add-value" onclick="ChangeScore(this)">+9</li>
+                                <li class="add-value" onclick="ChangeScore(this)">+8</li>
+                                <li class="add-value" onclick="ChangeScore(this)">+7</li>
+                                <li class="add-value" onclick="ChangeScore(this)">+6</li>
+                                <li class="add-value" onclick="ChangeScore(this)">+5</li>
+                                <li class="add-value" onclick="ChangeScore(this)">+4</li>
+                                <li class="add-value" onclick="ChangeScore(this)">+3</li>
+                                <li class="add-value" onclick="ChangeScore(this)">+2</li>
+                                <li class="add-value" onclick="ChangeScore(this)">+1</li>
+                            </div>
+                            <ul class="point-subtract" onclick="FadeInSubtract(this)">-</ul>
+                            <div class="subtract-section">
+                                <li class="subtract-value" onclick="ChangeScore(this)">-10</li>
+                                <li class="subtract-value" onclick="ChangeScore(this)">-9</li>
+                                <li class="subtract-value" onclick="ChangeScore(this)">-8</li>
+                                <li class="subtract-value" onclick="ChangeScore(this)">-7</li>
+                                <li class="subtract-value" onclick="ChangeScore(this)">-6</li>
+                                <li class="subtract-value" onclick="ChangeScore(this)">-5</li>
+                                <li class="subtract-value" onclick="ChangeScore(this)">-4</li>
+                                <li class="subtract-value" onclick="ChangeScore(this)">-3</li>
+                                <li class="subtract-value" onclick="ChangeScore(this)">-2</li>
+                                <li class="subtract-value" onclick="ChangeScore(this)">-1</li>
+                            </div>
                         </ul>
                     </li>
                 </ul>
