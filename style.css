@@ -6,6 +6,7 @@
 }
 
 body {
+    overflow-y: scroll;
     font-family: 'Quicksand', sans-serif;
 }
 
@@ -29,7 +30,7 @@ ul, li {
 
 /* Main section */
 .main {
-    padding-bottom: 40px;
+    padding-bottom: 41px;
     background-color: #FFF8E7 ;
 }
 
@@ -51,7 +52,7 @@ ul, li {
     font-size: 50px;
     color: #2d2828;
     text-transform: capitalize;
-    padding: 15px 0 15px 0;
+    padding: 20px 0 20px 0;
 }
 
 .row {
@@ -69,6 +70,7 @@ ul, li {
     border-radius: 4px;
     margin-bottom: 18px;
     background-color: #2d3e50;
+    transition: all 0.3 ease;
 }
 
 .avatar {
@@ -79,14 +81,13 @@ ul, li {
 
 .nickname {
     flex: 1;
-    padding-left: 30px;
+    padding-left: 20px;
     font-size: 30px;
 }
 
 .score {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    border: none;
+    color: #fff;
     font-size: 45px;
     width: 90px;
     height: 63px;
@@ -108,70 +109,83 @@ ul, li {
     color: #fff;
 }
 
-.point-add {
-    display: none;
-    position: relative;
-    opacity: 0;
-    background-color: #4CAF50;
-}
-
 .add-section {
     display: none;
     position: absolute;
-    top: 63px;
-    right: 70px;
+    top: 32px;
+    right: 147px;
     font-size: 28px;
 }
 
 .add-value {
-    display: flex;
-    background-color: #3dc259;
-    color: #fff;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    border: none;
+    font-size: 25px;
     height: 63px;
     width: 75px;
+    color: #fff;
+    background-color: #3dc259;
     cursor: pointer;
+}
+
+.add-value:hover {
+    background-color: #5fe07a;
+}
+
+.add-value:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    border-left: 1px solid hsla(0, 0%, 100%, .22);
+    border-right: 1px solid hsla(0, 0%, 100%, .22);
 }
 
 .subtract-section {
     display: none;
     position: absolute;
-    top: 63px;
-    right: 0;
+    top: 94px;
+    right: 147px;
     font-size: 28px;
 }
 
 .subtract-value {
-    display: flex;
-    background-color: #b21c25;
-    color: #fff;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    border: none;
+    font-size: 25px;
     height: 63px;
     width: 75px;
+    color: #fff;
+    background-color: #b21c25;
     cursor: pointer;
 }
 
-.point-add:hover {
-    background-color: #45a049;
+.subtract-value:hover {
+    background-color: #d12f38;
 }
 
-.point-subtract {
-    display: none;
+.subtract-value:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    border-left: 1px solid hsla(0, 0%, 100%, .22);
+    border-right: 1px solid hsla(0, 0%, 100%, .22);
+}
+
+.add-section, .subtract-section {
+    max-height: 0;
     opacity: 0;
-    background-color: #F44336;
+    overflow: hidden;
+    transition: all 0.4s ease;
 }
 
-.point-subtract:hover {
-    background-color: #d32f2f;
-}
-
-.point-add, .point-subtract {
-    transition: 0.3s ease;
-    font-size: 28px;
-    padding: 14px 30px;
-    cursor: pointer;
+.show {
+    display: flex;
+    max-height: 500px;
+    opacity: 1;
 }
 
 /* Footer section */
