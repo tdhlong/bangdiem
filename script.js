@@ -101,7 +101,7 @@ function sortPlayers() {
         player.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
 
         requestAnimationFrame(() => {
-            player.style.transition = "transform 0.5s ease";
+            player.style.transition = "all 0.8s ease";
             player.style.transform = "";
         });
 
