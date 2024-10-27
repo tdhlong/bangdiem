@@ -114,3 +114,59 @@ function sortPlayers() {
         }, { once: true });
     });
 }
+
+// Mở cửa sổ Edit người chơi
+function DisplayEdit() {
+    const editPopup = document.querySelector(".edit-popup");
+    const editArea = document.querySelector(".edit-area");
+    editPopup.style.display = "flex";
+
+    // Lấy danh sách tên và điểm của người chơi, hiển thị trong textarea
+    const players = document.querySelectorAll(".person"); // Lấy tất cả các phần tử người chơi
+    const namesAndScores = Array.from(players).map(player => {
+        const name = player.querySelector(".nickname").textContent.trim(); // Lấy tên
+        const score = player.querySelector(".score").textContent.trim(); // Lấy điểm
+        return `${name} ${score}`; // Ghép tên và điểm cách nhau bởi khoảng trắng
+    }).join("\n"); // Ghép tất cả các dòng lại với dấu ngắt dòng
+
+    editArea.value = namesAndScores;
+}
+
+// Đóng cửa sổ Edit người chơi
+function CloseEdit() {
+    const editPopup = document.querySelector(".edit-popup");
+    editPopup.style.display = "none";
+
+}
+
+// Cập nhật tên và điểm của người chơi từ textarea khi nhấn OK
+function UpdateNamesAndScores() {
+    const editArea = document.querySelector(".edit-area");
+    const newEntries = editArea.value.split("\n"); // Tách từng dòng
+    
+    // Lấy danh sách các phần tử người chơi
+    const players = document.querySelectorAll(".person");
+    players.forEach((player, index) => {
+        if (newEntries[index]) { // Chỉ cập nhật nếu có dòng dữ liệu mới trong textarea
+            // Tách tên và điểm, loại bỏ các khoảng trắng dư thừa
+            const [name, score] = newEntries[index].trim().split(/\s+(?=\d+$)/);
+            
+            // Cập nhật tên nếu có tên hợp lệ
+            const nicknameElement = player.querySelector(".nickname");
+            if (nicknameElement && name) {
+                nicknameElement.textContent = name;
+            }
+            
+            // Cập nhật điểm nếu có điểm hợp lệ
+            const scoreElement = player.querySelector(".score");
+            if (scoreElement && !isNaN(score)) {
+                scoreElement.textContent = score;
+            }
+        }
+    });
+
+    CloseEdit(); // Đóng popup sau khi cập nhật
+
+    sortPlayers();
+}
+

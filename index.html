@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="style.css" rel="stylesheet" />
+    <link href="./css/style.css" rel="stylesheet" />
     <title>Bảng điểm - Quốc tế Á Châu</title>
 </head>
 <body>
@@ -27,8 +27,8 @@
                     <!-- Người chơi -->
                     <li class="person">
                         <img class="avatar" src="./img/conghoa.ico" alt="" />
-                        <p class="nickname">Cơ sở Cộng Hòa</p>
-                        <button class="score" onclick="fadeInOut(this)">10</button>
+                        <span class="nickname">Cơ sở Cộng Hòa</span>
+                        <button class="score" onclick="fadeInOut(this)">0</button>
                         <!-- Danh sách cộng trừ điểm -->
                         <ul class="point-btn">
                             <div class="add-section">
@@ -60,8 +60,8 @@
                     <!-- Người chơi -->
                     <li class="person">
                         <img class="avatar" src="./img/caothang.ico" alt="" />
-                        <p class="nickname">Cơ sở Cao Thắng</p>
-                        <button class="score" onclick="fadeInOut(this)">10</button>
+                        <span class="nickname">Cơ sở Cao Thắng</span>
+                        <button class="score" onclick="fadeInOut(this)">0</button>
                         <!-- Danh sách cộng trừ điểm -->
                         <ul class="point-btn">
                             <div class="add-section">
@@ -93,8 +93,8 @@
                     <!-- Người chơi -->
                     <li class="person">
                         <img class="avatar" src="./img/vanthanh.ico" alt="" />
-                        <p class="nickname">Cơ sở Văn Thanh</p>
-                        <button class="score" onclick="fadeInOut(this)">10</button>
+                        <span class="nickname">Cơ sở Văn Thanh</span>
+                        <button class="score" onclick="fadeInOut(this)">0</button>
                         <!-- Danh sách cộng trừ điểm -->
                         <ul class="point-btn">
                             <div class="add-section">
@@ -126,8 +126,8 @@
                     <!-- Người chơi -->
                     <li class="person">
                         <img class="avatar" src="./img/nguyen-van-huong.ico" alt="" />
-                        <p class="nickname">Cơ sở Nguyễn Văn Hương</p>
-                        <button class="score" onclick="fadeInOut(this)">10</button>
+                        <span class="nickname">Cơ sở Nguyễn Văn Hương</span>
+                        <button class="score" onclick="fadeInOut(this)">0</button>
                         <!-- Danh sách cộng trừ điểm -->
                         <ul class="point-btn">
                             <div class="add-section">
@@ -158,6 +158,14 @@
                     </li>
                 </ul>
             </div>
+            <div class="edit" onclick="DisplayEdit()">📋</div>
+            <div class="edit-popup">
+                <div class="box">
+                    <textarea class="edit-area"></textarea>
+                    <button class="cancel-button" onclick="CloseEdit()">Hủy</button>
+                    <button class="ok-button" onclick="UpdateNamesAndScores()">OK</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -171,7 +179,7 @@
     </footer>
 
     <!-- Javascript script -->
-     <script src="script.js"></script>
+     <script src="./js/script.js"></script>
      
 </body>
 </html>
