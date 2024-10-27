@@ -35,6 +35,12 @@ function ChangeScore(element) {
 
     const changeValue = parseInt(element.textContent);
 
+    if (changeValue > 0) {
+        document.getElementById("clap-sound").play();
+    } else {
+        document.getElementById("lose-sound").play();
+    }
+
     // Cập nhật điểm mới
     currentScore += changeValue;
 

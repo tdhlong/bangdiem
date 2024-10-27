@@ -158,6 +158,8 @@
                     </li>
                 </ul>
             </div>
+
+            <!-- Phần Edit tên người chơi và điểm -->
             <div class="edit" onclick="DisplayEdit()">📋</div>
             <div class="edit-popup">
                 <div class="box">
@@ -166,6 +168,10 @@
                     <button class="ok-button" onclick="UpdateNamesAndScores()">OK</button>
                 </div>
             </div>
+
+            <!-- Phần audio được phát khi cộng hoặc trừ điểm -->
+             <audio id="clap-sound" src="./sfx/clap.mp3"></audio>
+             <audio id="lose-sound" src="./sfx/lose.mp3"></audio>
         </div>
     </div>
 
