@@ -24,18 +24,13 @@ ul, li {
 .header-logo {
     width: 100%;
     height: 144px;
-    padding: 20px 0;
     object-fit: contain;
+    padding: 20px 0px;
     background: #b21c25;
-    transition: transform 0.3s ease;
-}
-
-.header-logo:hover {
-    transform: scale(1.02);
 }
 
 .main {
-    padding: 40px 0;
+    padding-bottom: 41px;
     background-color: #FFF8E7;
 }
 
@@ -44,9 +39,7 @@ ul, li {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    margin: 0px 300px;
 }
 
 .main-logo {
@@ -79,13 +72,8 @@ ul, li {
     border-radius: 8px;
     margin-bottom: 18px;
     background-color: #2d3e50;
-    transition: all 0.3s ease;
+    transition: transform 0.5s ease, margin-bottom 0.5s ease;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.person:hover {
-    transform: translateX(5px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .avatar {
@@ -99,7 +87,6 @@ ul, li {
     flex: 1;
     padding-left: 20px;
     font-size: 30px;
-    font-weight: 500;
 }
 
 .score {
@@ -111,13 +98,11 @@ ul, li {
     border-radius: 0 8px 8px 0;
     transition: all 0.3s ease;
     background-color: #dc3546;
-    font-weight: bold;
 }
 
 .score:hover {
     cursor: pointer;
     background-color: #bb3b48;
-    transform: scale(1.05);
 }
 
 @keyframes scoreUpdate {
@@ -149,10 +134,10 @@ ul, li {
     visibility: hidden;
     opacity: 0;
     max-height: 0;
-    transform: translateY(-10px);
+    transform: translateY(0px);
     transition: all 0.3s ease;
     z-index: 1;
-    left: -940px;
+    left: -896px;
     margin-top: 10px;
 }
 
@@ -166,11 +151,11 @@ ul, li {
 }
 
 .add-section {
-    top: 32px;
+    top: 22px;
 }
 
 .subtract-section {
-    top: 94px;
+    top: 82px;
 }
 
 .add-value,
@@ -191,7 +176,6 @@ ul, li {
 
 .add-value:hover {
     background-color: #5fe07a;
-    transform: scale(1.05);
 }
 
 .subtract-value {
@@ -200,7 +184,6 @@ ul, li {
 
 .subtract-value:hover {
     background-color: #d12f38;
-    transform: scale(1.05);
 }
 
 .add-value:not(:last-child)::after,
@@ -229,11 +212,6 @@ ul, li {
     font-size: 18px;
     font-weight: 600;
 }
-
-.footer-content-first {
-    margin-bottom: 10px;
-}
-
 
 /* Animations */
 @keyframes fadeIn {
