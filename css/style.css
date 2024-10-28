@@ -38,7 +38,7 @@ ul, li {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 0px 15vw;
+    margin: 0px 20vw;
 }
 
 .main-logo {
@@ -136,7 +136,7 @@ ul, li {
     transform: translateY(0px);
     transition: all 0.3s ease;
     z-index: 1;
-    left: -896px;
+    left: -766px;
     margin-top: 10px;
 }
 
@@ -161,9 +161,9 @@ ul, li {
 .subtract-value {
     position: relative;
     border: none;
-    font-size: 25px;
-    height: 63px;
-    width: 75px;
+    font-size: 22px;
+    height: 62px;
+    width: 62px;
     color: #fff;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -295,10 +295,8 @@ ul, li {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 20;
     background-color: rgb(0 0 0 / 70%);
 
-    /* background-image: url("../img/celebrate.gif"); */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -306,14 +304,18 @@ ul, li {
 
 .leaderboard {
     display: flex;
-    height: 500px;
-    width: 500px;
+    width: 60%;
+    height: 60%;
     border-radius: 8px;
     transform: translate(0%, 0%);
     align-items: end;
     justify-content: center;
     color: #fff;
-    background-color: #d9d9d9;
+    background-color: #FFF8E7;
+
+    background-image: url("../img/podium-bg.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 .first-place, .second-place, .third-place {
@@ -325,22 +327,22 @@ ul, li {
 }
 
 .first-place {
-    height: 200px;
+    height: 60%;
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
-    background-color: #de584d;
+    background-color: #fcb54d;
 }
 
 .second-place {
-    height: 150px;
+    height: 50%;
     border-top-left-radius: 8px;
-    background-color: #4d9fde;   
+    background-color: #cfcbcb;   
 }
 
 .third-place {
-    height: 100px;
+    height: 50%;
     border-top-right-radius: 8px;
-    background-color: #4bbda6;
+    background-color: #c76f5b;
 }
 
 #first-place-image, #second-place-image, #third-place-image {
@@ -352,16 +354,19 @@ ul, li {
 }
 
 #first-place-image {
-    bottom: 219px;
+    bottom: 64%;
 }
 
-#second-place-image {
-    bottom: 170px;
+#second-place-image, #third-place-image {
+    bottom: 54%;
 }
 
-#third-place-image {
-    bottom: 120px;
+#silver-medal, #gold-medal, #bronze-medal {
+    position: absolute;
+    width: 100px;
+    height: 100px;
 }
+
 
 /* Footer section */
 .footer {
