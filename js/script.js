@@ -190,7 +190,7 @@ function EndGame() {
     const celebrateSound = document.getElementById("celebrate-sound");
 
     leaderboard.style.display = "flex";
-    leaderboard.style.backgroundImage = "url('../img/celebrate.gif')";
+    leaderboard.style.backgroundImage = "url('./img/celebrate.gif')";
     
     // Phát âm thanh
     celebrateSound.play();
