@@ -132,11 +132,19 @@ function DisplayEdit() {
     const namesAndScores = Array.from(players).map(player => {
         const name = player.querySelector(".nickname").textContent.trim(); // Lấy tên
         const score = player.querySelector(".score").textContent.trim(); // Lấy điểm
-        return `${name} ${score}`; // Ghép tên và điểm cách nhau bởi khoảng trắng
+        return `${name}: ${score}`; // Ghép tên và điểm cách nhau bởi khoảng trắng
     }).join("\n"); // Ghép tất cả các dòng lại với dấu ngắt dòng
 
     editArea.value = namesAndScores;
 }
+
+document.querySelector(".edit-popup").addEventListener("click", function(event) {
+    // Kiểm tra nếu click ngoài box
+    const box = document.querySelector(".box");
+    if (!box.contains(event.target)) {
+        this.style.display = "none";  // Ẩn box
+    }
+});
 
 // Đóng cửa sổ Edit người chơi
 function CloseEdit() {
@@ -155,7 +163,7 @@ function UpdateNamesAndScores() {
     players.forEach((player, index) => {
         if (newEntries[index]) { // Chỉ cập nhật nếu có dòng dữ liệu mới trong textarea
             // Tách tên và điểm, loại bỏ các khoảng trắng dư thừa
-            const [name, score] = newEntries[index].trim().split(/\s+(?=\d+$)/);
+            const [name, score] = newEntries[index].replace(":", "").trim().split(/\s+(?=\d+$)/);
             
             // Cập nhật tên nếu có tên hợp lệ
             const nicknameElement = player.querySelector(".nickname");
@@ -176,3 +184,60 @@ function UpdateNamesAndScores() {
     sortPlayers();
 }
 
+// Endgame
+function EndGame() {
+    const leaderboard = document.querySelector(".end-popup");
+    const celebrateSound = document.getElementById("celebrate-sound");
+
+    leaderboard.style.display = "flex";
+    leaderboard.style.backgroundImage = "url('../img/celebrate.gif')";
+    
+    // Phát âm thanh
+    celebrateSound.play();
+
+    // Dừng âm thanh sau 4 giây
+    setTimeout(() => {
+        celebrateSound.pause(); // Dừng âm thanh
+        celebrateSound.currentTime = 0; // Đặt lại thời gian phát về 0
+    }, 4000);
+
+    setTimeout(() => {
+        leaderboard.style.backgroundImage = "none";
+    }, 7500);
+
+    updateLeaderboardImages();
+}
+
+document.querySelector(".end-popup").addEventListener("click", function(event) {
+    // Kiểm tra nếu click ngoài leaderboard
+    const leaderboard = document.querySelector(".leaderboard");
+    if (!leaderboard.contains(event.target)) {
+        this.style.display = "none"; // Ẩn end-popup
+    }
+});
+
+function updateLeaderboardImages() {
+    // Lấy tất cả các phần tử "person" từ danh sách người chơi
+    const players = Array.from(document.querySelectorAll('.person'));
+    
+    // Sắp xếp danh sách dựa trên điểm của từng đội
+    players.sort((a, b) => {
+        const scoreA = parseInt(a.querySelector('.score').textContent);
+        const scoreB = parseInt(b.querySelector('.score').textContent);
+        return scoreB - scoreA;
+    });
+
+    // Cập nhật hình ảnh cho vị trí thứ nhất, thứ hai và thứ ba
+    if (players[0]) {
+        const firstImageSrc = players[0].querySelector('.avatar').src;
+        document.getElementById('first-place-image').src = firstImageSrc;
+    }
+    if (players[1]) {
+        const secondImageSrc = players[1].querySelector('.avatar').src;
+        document.getElementById('second-place-image').src = secondImageSrc;
+    }
+    if (players[2]) {
+        const thirdImageSrc = players[2].querySelector('.avatar').src;
+        document.getElementById('third-place-image').src = thirdImageSrc;
+    }
+}

@@ -170,8 +170,30 @@
             </div>
 
             <!-- Phần audio được phát khi cộng hoặc trừ điểm -->
-             <audio id="clap-sound" src="./sfx/clap.mp3"></audio>
-             <audio id="lose-sound" src="./sfx/lose.mp3"></audio>
+            <audio id="clap-sound" src="./sfx/clap.mp3"></audio>
+            <audio id="lose-sound" src="./sfx/lose.mp3"></audio>
+
+            <!-- Phần endgame -->
+            <button class="end-game" onclick="EndGame()">Kết thúc</button>
+            <div class="end-popup">
+                <div class="leaderboard">
+                    <div class="second-place">
+                        <img id="second-place-image" src="" alt="" />
+                        <div>2</div>
+                    </div>
+                    <div class="first-place">
+                        <img id="first-place-image" src="" alt="" />
+                        <div>1</div>
+                    </div>
+                    <div class="third-place">
+                        <img id="third-place-image" src="" alt="" />
+                        <div>3</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phần audio được phát khi endgame -->
+            <audio id="celebrate-sound" src="./sfx/celebrate.mp3"></audio>
         </div>
     </div>
 
@@ -185,7 +207,7 @@
     </footer>
 
     <!-- Javascript script -->
-     <script src="./js/script.js"></script>
+    <script src="./js/script.js"></script>
      
 </body>
 </html>
