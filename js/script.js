@@ -186,11 +186,11 @@ function UpdateNamesAndScores() {
 
 // Endgame
 function EndGame() {
-    const leaderboard = document.querySelector(".end-popup");
+    const endPopup = document.querySelector(".end-popup");
     const celebrateSound = document.getElementById("celebrate-sound");
 
-    leaderboard.style.display = "flex";
-    leaderboard.style.backgroundImage = "url('./img/celebrate.gif')";
+    endPopup.style.display = "flex";
+    endPopup.style.backgroundImage = "url('./img/celebrate.gif')";
     
     // Phát âm thanh
     celebrateSound.play();
@@ -201,9 +201,9 @@ function EndGame() {
         celebrateSound.currentTime = 0; // Đặt lại thời gian phát về 0
     }, 4000);
 
-    setTimeout(() => {
-        leaderboard.style.backgroundImage = "none";
-    }, 7500);
+    // setTimeout(() => {
+    //     endPopup.style.backgroundImage = "none";
+    // }, 7500);
 
     updateLeaderboardImages();
 }
@@ -230,14 +230,20 @@ function updateLeaderboardImages() {
     // Cập nhật hình ảnh cho vị trí thứ nhất, thứ hai và thứ ba
     if (players[0]) {
         const firstImageSrc = players[0].querySelector('.avatar').src;
+        const firstName = players[0].querySelector('.nickname').textContent;
         document.getElementById('first-place-image').src = firstImageSrc;
+        document.querySelector('.first-place .winner-name-first').textContent = firstName;
     }
     if (players[1]) {
         const secondImageSrc = players[1].querySelector('.avatar').src;
+        const secondName = players[1].querySelector('.nickname').textContent;
         document.getElementById('second-place-image').src = secondImageSrc;
+        document.querySelector('.second-place .winner-name').textContent = secondName;
     }
     if (players[2]) {
         const thirdImageSrc = players[2].querySelector('.avatar').src;
+        const thirdName = players[2].querySelector('.nickname').textContent;
         document.getElementById('third-place-image').src = thirdImageSrc;
+        document.querySelector('.third-place .winner-name').textContent = thirdName;
     }
 }
