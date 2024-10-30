@@ -310,7 +310,7 @@ ul, li {
     justify-content: center;
     color: #fff;
     background-color: #FFF8E7;
-    background-image: url("./img/podium-bg.jpg");
+    /* background-image: url("../img/podium-bg.jpg"); */
     background-size: 100% 100%;
 }
 
