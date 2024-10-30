@@ -201,9 +201,9 @@ function EndGame() {
         celebrateSound.currentTime = 0; // Đặt lại thời gian phát về 0
     }, 4000);
 
-    // setTimeout(() => {
-    //     endPopup.style.backgroundImage = "none";
-    // }, 7500);
+    setTimeout(() => {
+        endPopup.style.backgroundImage = "none";
+    }, 7500);
 
     updateLeaderboardImages();
 }

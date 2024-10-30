@@ -125,7 +125,7 @@
                     </li>
                     <!-- Người chơi -->
                     <li class="person">
-                        <img class="avatar" src="./img//teams-logo/nguyen-van-huong.ico" alt="" />
+                        <img class="avatar" src="./img/teams-logo/nguyen-van-huong.ico" alt="" />
                         <span class="nickname">Cơ sở Nguyễn Văn Hương</span>
                         <button class="score" onclick="fadeInOut(this)">0</button>
                         <!-- Danh sách cộng trừ điểm -->
@@ -176,7 +176,7 @@
             <!-- Phần endgame -->
             <button class="end-game" onclick="EndGame()">Xếp hạng</button>
             <div class="end-popup">
-                <div class="leaderboard" style="background-image: url('./img/podium-bg.jpg');">
+                <div class="leaderboard">
                     <div class="second-place">
                         <img id="silver-medal" src="./img/medals/silver.png" alt="" />
                         <img id="second-place-image" src="" alt="" />
@@ -211,6 +211,14 @@
 
     <!-- Javascript script -->
     <script src="./js/script.js"></script>
+
+    <!-- Preload image -->
+    <script>
+        window.onload = function() {
+            const preLoading = new Image();
+            preLoading.src = './img/podium-bg.jpg'
+        }
+    </script>
      
 </body>
 </html>
