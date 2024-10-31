@@ -307,14 +307,12 @@ ul, li {
 /* Leaderboard section */
 .leaderboard {
     display: flex;
-    width: 60%;
-    height: 60%;
+    width: 80%;
+    height: 80%;
     border-radius: 8px;
     transform: translate(0%, 0%);
     align-items: end;
     justify-content: center;
-    color: #fff;
-    background-color: #FFF8E7;
     background-image: url("../img/podium-bg.jpg");
     background-size: 100% 100%;
 }
@@ -322,7 +320,7 @@ ul, li {
 .first-place, .second-place, .third-place {
     display: flex;
     font-size: 70px;
-    width: 170px;
+    width: 22%;
     justify-content: center;
     align-items: center;
 }
@@ -348,43 +346,40 @@ ul, li {
 
 #first-place-image, #second-place-image, #third-place-image {
     position: absolute;
-    font-size: 12px;
+    object-fit: contain;
     border-radius: 8px;
-    width: 100px;
-    height: 70px;
+    width: 20%;
+    height: 20%;
 }
 
 #first-place-image {
-    bottom: 64%;
+    bottom: 62%;
 }
 
 #second-place-image, #third-place-image {
-    bottom: 54%;
+    bottom: 52%;
 }
 
 #silver-medal, #gold-medal, #bronze-medal {
-    position: absolute;
-    width: 100px;
-    height: 100px;
+    height: 42%;
 }
 
 .winner-name {
     position: absolute;
-    color: #000;
-    font-size: 20px;
-    bottom: 72%;
+    font-size: 2vw;
+    bottom: 73%;
     text-align: center;
-    width: 170px;
+    width: 26%;
     word-wrap: break-word;
 }
 
 .winner-name-first {
     position: absolute;
     color: #000;
-    font-size: 20px;
-    bottom: 82%;
+    font-size: 2vw;
+    bottom: 83%;
     text-align: center;
-    width: 170px;
+    width: 26%;
     word-wrap: break-word;
 }
 
