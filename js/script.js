@@ -188,9 +188,15 @@ function UpdateNamesAndScores() {
 function EndGame() {
     const endPopup = document.querySelector(".end-popup");
     const celebrateSound = document.getElementById("celebrate-sound");
+    const jsConfetti = new JSConfetti();
 
     endPopup.style.display = "flex";
-    endPopup.style.backgroundImage = "url('./img/celebrate.gif')";
+    jsConfetti.addConfetti();
+
+    // Sau 2 giây, kích hoạt pháo giấy lần thứ hai
+    setTimeout(() => {
+        jsConfetti.addConfetti();
+    }, 2000);
     
     // Phát âm thanh
     celebrateSound.play();
