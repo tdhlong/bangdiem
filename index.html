@@ -8,209 +8,78 @@
     <title>Bảng điểm - Quốc tế Á Châu</title>
 </head>
 <body>
-    <!-- Hiệu ứng hoa giấy -->
-    <canvas class="confetti"></canvas>
+    <div class="wrapper">
+        <!-- Hiệu ứng hoa giấy -->
+        <canvas class="confetti"></canvas>
     
-    <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <div class="header-container">
-                <img class="header-logo" src="./img/logo.png" alt="" />
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-container">
+                    <img class="header-logo" src="./img/logo.png" alt="" />
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
         
-    <!-- Main -->
-    <div class="main">
-        <div class="main-content">
-            <h1 class="main-title">Bảng điểm</h1>
-            <div class="row">
-                <!-- Danh sách người chơi -->
-                <ul class="person-list">
-                    <!-- Người chơi -->
-                    <li class="person">
-                        <img class="avatar" src="./img/teams-logo/conghoa.ico" alt="" />
-                        <span class="nickname">Cơ sở Cộng Hòa</span>
-                        <button class="score" onclick="fadeInOut(this)">0</button>
-                        <!-- Danh sách cộng trừ điểm -->
-                        <ul class="point-btn">
-                            <div class="add-section">
-                                <button class="add-value" onclick="ChangeScore(this)">+10</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+9</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+8</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+7</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+6</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+5</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+4</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+3</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+2</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+1</button>
-                            </div>
-                            <div class="subtract-section">
-                                <button class="subtract-value" onclick="ChangeScore(this)">-10</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-9</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-8</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-7</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-6</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-5</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-4</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-3</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-2</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-1</button>
-                            </div>
-                        </ul>
-                    </li>
-                    <!-- Người chơi -->
-                    <li class="person">
-                        <img class="avatar" src="./img/teams-logo/caothang.ico" alt="" />
-                        <span class="nickname">Cơ sở Cao Thắng</span>
-                        <button class="score" onclick="fadeInOut(this)">0</button>
-                        <!-- Danh sách cộng trừ điểm -->
-                        <ul class="point-btn">
-                            <div class="add-section">
-                                <button class="add-value" onclick="ChangeScore(this)">+10</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+9</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+8</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+7</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+6</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+5</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+4</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+3</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+2</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+1</button>
-                            </div>
-                            <div class="subtract-section">
-                                <button class="subtract-value" onclick="ChangeScore(this)">-10</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-9</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-8</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-7</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-6</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-5</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-4</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-3</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-2</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-1</button>
-                            </div>
-                        </ul>
-                    </li>
-                    <!-- Người chơi -->
-                    <li class="person">
-                        <img class="avatar" src="./img/teams-logo/vanthanh.ico" alt="" />
-                        <span class="nickname">Cơ sở Văn Thánh, Trần Nhật Duật</span>
-                        <button class="score" onclick="fadeInOut(this)">0</button>
-                        <!-- Danh sách cộng trừ điểm -->
-                        <ul class="point-btn">
-                            <div class="add-section">
-                                <button class="add-value" onclick="ChangeScore(this)">+10</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+9</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+8</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+7</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+6</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+5</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+4</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+3</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+2</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+1</button>
-                            </div>
-                            <div class="subtract-section">
-                                <button class="subtract-value" onclick="ChangeScore(this)">-10</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-9</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-8</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-7</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-6</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-5</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-4</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-3</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-2</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-1</button>
-                            </div>
-                        </ul>
-                    </li>
-                    <!-- Người chơi -->
-                    <li class="person">
-                        <img class="avatar" src="./img/teams-logo/nguyen-van-huong.ico" alt="" />
-                        <span class="nickname">Cơ sở Nguyễn Văn Hưởng</span>
-                        <button class="score" onclick="fadeInOut(this)">0</button>
-                        <!-- Danh sách cộng trừ điểm -->
-                        <ul class="point-btn">
-                            <div class="add-section">
-                                <button class="add-value" onclick="ChangeScore(this)">+10</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+9</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+8</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+7</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+6</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+5</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+4</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+3</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+2</button>
-                                <button class="add-value" onclick="ChangeScore(this)">+1</button>
-                            </div>
-                            <div class="subtract-section">
-                                <button class="subtract-value" onclick="ChangeScore(this)">-10</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-9</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-8</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-7</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-6</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-5</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-4</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-3</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-2</button>
-                                <button class="subtract-value" onclick="ChangeScore(this)">-1</button>
-                            </div>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Phần Edit tên người chơi và điểm -->
-            <div class="edit" onclick="DisplayEdit()">📋</div>
-            <div class="edit-popup">
-                <div class="box">
-                    <textarea class="edit-area"></textarea>
-                    <button class="cancel-button" onclick="CloseEdit()">Hủy</button>
-                    <button class="ok-button" onclick="UpdateNamesAndScores()">OK</button>
+        <!-- Main -->
+        <div class="main">
+            <div class="main-content">
+                <h1 class="main-title">Bảng điểm</h1>
+                <div class="row">
+                    <!-- Danh sách người chơi -->
+                    <ul class="person-list" id="personList"></ul>
                 </div>
-            </div>
 
-            <!-- Phần audio được phát khi cộng hoặc trừ điểm -->
-            <audio id="clap-sound" src="./sfx/clap.mp3"></audio>
-            <audio id="lose-sound" src="./sfx/lose.mp3"></audio>
-
-            <!-- Phần endgame -->
-            <button class="end-game" onclick="EndGame()">Xếp hạng</button>
-            <div class="end-popup">
-                <div class="leaderboard">
-                    <div class="second-place">
-                        <div class="winner-name"></div>
-                        <img id="silver-medal" src="./img/medals/silver.png" alt="" />
-                        <img id="second-place-image" src="" alt="" />
-                    </div>
-                    <div class="first-place">
-                        <div class="winner-name-first"></div>
-                        <img id="gold-medal" src="./img/medals/gold.png" alt="" />
-                        <img id="first-place-image" src="" alt="" />
-                    </div>
-                    <div class="third-place">
-                        <div class="winner-name"></div>
-                        <img id="bronze-medal" src="./img/medals/bronze.png" alt="" />
-                        <img id="third-place-image" src="" alt="" />
+                <!-- Phần Edit tên người chơi và điểm -->
+                <div class="edit" onclick="DisplayEdit()">📋</div>
+                <div class="edit-popup">
+                    <div class="box">
+                        <textarea class="edit-area"></textarea>
+                        <button class="cancel-button" onclick="CloseEdit()">Hủy</button>
+                        <button class="ok-button" onclick="UpdateNamesAndScores()">OK</button>
                     </div>
                 </div>
-            </div>
 
-            <!-- Phần audio được phát khi endgame -->
-            <audio id="celebrate-sound" src="./sfx/celebrate.mp3"></audio>
+                <!-- Phần audio được phát khi cộng hoặc trừ điểm -->
+                <audio id="clap-sound" src="./sfx/clap.mp3"></audio>
+                <audio id="lose-sound" src="./sfx/lose.mp3"></audio>
+
+                <!-- Phần endgame -->
+                <button class="end-game" onclick="EndGame()">Xếp hạng</button>
+                <div class="end-popup">
+                    <div class="leaderboard">
+                        <div class="second-place">
+                            <div class="winner-name"></div>
+                            <img id="silver-medal" src="./img/medals/silver.png" alt="" />
+                            <img id="second-place-image" src="" alt="" />
+                        </div>
+                        <div class="first-place">
+                            <div class="winner-name-first"></div>
+                            <img id="gold-medal" src="./img/medals/gold.png" alt="" />
+                            <img id="first-place-image" src="" alt="" />
+                        </div>
+                        <div class="third-place">
+                            <div class="winner-name"></div>
+                            <img id="bronze-medal" src="./img/medals/bronze.png" alt="" />
+                            <img id="third-place-image" src="" alt="" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phần audio được phát khi endgame -->
+                <audio id="celebrate-sound" src="./sfx/celebrate.mp3"></audio>
+            </div>
         </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="footer-content-first">Công cụ trực tuyến cho Trường Quốc tế Á Châu</p>
+                <br>
+                <p>Copyright © 2024 The Asian International School. All rights reserved</p>
+            </div>
+        </footer>
     </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p class="footer-content-first">Công cụ trực tuyến cho Trường Quốc tế Á Châu</p>
-            <br>
-            <p>Copyright © 2024 The Asian International School. All rights reserved</p>
-        </div>
-    </footer>
 
     <!-- Javascript script -->
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>

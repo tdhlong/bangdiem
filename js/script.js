@@ -150,38 +150,54 @@ document.querySelector(".edit-popup").addEventListener("click", function(event) 
 function CloseEdit() {
     const editPopup = document.querySelector(".edit-popup");
     editPopup.style.display = "none";
-
 }
 
 // Cập nhật tên và điểm của người chơi từ textarea khi nhấn OK
 function UpdateNamesAndScores() {
     const editArea = document.querySelector(".edit-area");
-    const newEntries = editArea.value.split("\n"); // Tách từng dòng
+    // Tách từng dòng và loại bỏ dòng trống
+    const newEntries = editArea.value.split("\n").filter(line => line.trim() !== "");
+
+    const playerListElement = document.querySelector(".person-list");
+
+    // Lưu lại avatar của các người chơi hiện tại dựa trên tên (giả sử tên là duy nhất)
+    const oldAvatars = {};
+    document.querySelectorAll(".person").forEach(person => {
+        const name = person.querySelector(".nickname").textContent.trim();
+        const avatarSrc = person.querySelector(".avatar").src;
+        oldAvatars[name] = avatarSrc;
+    });
+
+    // Xóa sạch danh sách hiện tại
+    playerListElement.innerHTML = "";
     
-    // Lấy danh sách các phần tử người chơi
-    const players = document.querySelectorAll(".person");
-    players.forEach((player, index) => {
-        if (newEntries[index]) { // Chỉ cập nhật nếu có dòng dữ liệu mới trong textarea
-            // Tách tên và điểm, loại bỏ các khoảng trắng dư thừa
-            const [name, score] = newEntries[index].replace(":", "").trim().split(/\s+(?=\d+$)/);
+    // Cập nhật lại danh sách dựa trên nội dung textarea
+    newEntries.forEach(entry => {
+        // Giả sử định dạng mỗi dòng là: "Tên: Điểm"
+        const parts = entry.split(":");
+        if (parts.length >= 2) {
+            const name = parts[0].trim();
+            const scoreStr = parts.slice(1).join(":").trim();
+            const score = parseInt(scoreStr) || 0;
             
-            // Cập nhật tên nếu có tên hợp lệ
-            const nicknameElement = player.querySelector(".nickname");
-            if (nicknameElement && name) {
-                nicknameElement.textContent = name;
-            }
+            // Nếu trong oldAvatars có tồn tại avatar của người chơi này thì sử dụng lại, ngược lại dùng avatar mặc định
+            const avatar = oldAvatars[name] || './img/no-image.jpeg';
             
-            // Cập nhật điểm nếu có điểm hợp lệ
-            const scoreElement = player.querySelector(".score");
-            if (scoreElement && !isNaN(score)) {
-                scoreElement.textContent = score;
-            }
+            // Tạo đối tượng người chơi mới
+            const newPlayer = {
+                avatar: avatar,
+                nickname: name,
+                score: score
+            };
+            
+            // Tạo phần tử người chơi và thêm vào danh sách
+            const playerItem = createPlayerItem(newPlayer);
+            playerListElement.appendChild(playerItem);
         }
     });
 
-    CloseEdit(); // Đóng popup sau khi cập nhật
-
-    sortPlayers();
+    CloseEdit(); // Đóng cửa sổ edit
+    sortPlayers(); // Sắp xếp lại nếu cần
 }
 
 // Endgame
@@ -251,5 +267,137 @@ function updateLeaderboardImages() {
         const thirdName = players[2].querySelector('.nickname').textContent;
         document.getElementById('third-place-image').src = thirdImageSrc;
         document.querySelector('.third-place .winner-name').textContent = thirdName;
+    }
+}
+
+// Danh sách các người chơi
+const players = [
+    {
+      avatar: './img/teams-logo/conghoa.ico',
+      nickname: 'Cơ sở Cộng Hòa',
+      score: 0
+    },
+    {
+      avatar: './img/teams-logo/caothang.ico',
+      nickname: 'Cơ sở Cao Thắng',
+      score: 0
+    },
+    {
+      avatar: './img/teams-logo/vanthanh.ico',
+      nickname: 'Cơ sở Văn Thánh, Trần Nhật Duật',
+      score: 0
+    },
+    {
+      avatar: './img/teams-logo/nguyen-van-huong.ico',
+      nickname: 'Cơ sở Nguyễn Văn Hưởng',
+      score: 0
+    }
+  ];
+  
+    // Mảng các giá trị cộng/trừ điểm (có thể tách ra nếu cần)
+    const pointValues = {
+        add: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+        subtract: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+    };
+  
+    function createPlayerItem(player) {
+        // Tạo phần tử li cho mỗi người chơi
+        const li = document.createElement('li');
+        li.classList.add('person');
+    
+        // Tạo thẻ ảnh đại diện
+        const avatarImg = document.createElement('img');
+        avatarImg.classList.add('avatar');
+        avatarImg.src = player.avatar;
+        avatarImg.alt = player.nickname;
+    
+        // Nếu avatar có giá trị './img/no-image.jpeg', thêm sự kiện hover để thay đổi ảnh
+        if (player.avatar === './img/no-image.jpeg') {
+            avatarImg.addEventListener('mouseover', () => {
+                avatarImg.src = './img/upload-image.jpg';
+            });
+            avatarImg.addEventListener('mouseout', () => {
+                avatarImg.src = './img/no-image.jpeg';
+            });
+        }
+    
+        // Tạo input file (ẩn) để cập nhật ảnh khi click (nếu cần)
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = 'image/*';
+        fileInput.style.display = 'none';
+        // Khi nhấp vào ảnh, kích hoạt input file
+        avatarImg.addEventListener('click', () => {
+            fileInput.click();
+        });
+        fileInput.addEventListener('change', (event) => {
+            handleAvatarUpload(event, avatarImg);
+        });
+    
+        // Thêm các phần tử vào li
+        li.appendChild(avatarImg);
+        li.appendChild(fileInput);
+    
+        // Tiếp tục tạo các phần tử khác như nickname, score, v.v.
+        const nicknameSpan = document.createElement('span');
+        nicknameSpan.classList.add('nickname');
+        nicknameSpan.textContent = player.nickname;
+        li.appendChild(nicknameSpan);
+    
+        const scoreBtn = document.createElement('button');
+        scoreBtn.classList.add('score');
+        scoreBtn.textContent = player.score;
+        scoreBtn.setAttribute('onclick', 'fadeInOut(this)');
+        li.appendChild(scoreBtn);
+    
+        // Tạo danh sách nút cộng/trừ điểm như cũ...
+        const pointBtn = document.createElement('ul');
+        pointBtn.classList.add('point-btn');
+        // Tạo nút cộng điểm
+        const addSection = document.createElement('div');
+        addSection.classList.add('add-section');
+        pointValues.add.forEach(value => {
+            const btn = document.createElement('button');
+            btn.classList.add('add-value');
+            btn.textContent = `+${value}`;
+            btn.setAttribute('onclick', 'ChangeScore(this)');
+            addSection.appendChild(btn);
+        });
+        // Tạo nút trừ điểm
+        const subtractSection = document.createElement('div');
+        subtractSection.classList.add('subtract-section');
+        pointValues.subtract.forEach(value => {
+            const btn = document.createElement('button');
+            btn.classList.add('subtract-value');
+            btn.textContent = `-${value}`;
+            btn.setAttribute('onclick', 'ChangeScore(this)');
+            subtractSection.appendChild(btn);
+        });
+        pointBtn.appendChild(addSection);
+        pointBtn.appendChild(subtractSection);
+        li.appendChild(pointBtn);
+    
+        return li;
+    }
+    
+    
+  
+    document.addEventListener('DOMContentLoaded', function() {
+    // Code tạo danh sách
+    const personList = document.getElementById('personList');
+    players.forEach(player => {
+        const playerItem = createPlayerItem(player);
+        personList.appendChild(playerItem);
+    });
+});
+
+function handleAvatarUpload(event, avatarImgElement) {
+    const file = event.target.files[0];
+    if (file) {
+        // Tạo URL tạm thời cho file đã chọn
+        const imageURL = URL.createObjectURL(file);
+        // Cập nhật src của ảnh đại diện
+        avatarImgElement.src = imageURL;
+        // Nếu bạn cần lưu ảnh này vào mảng players hoặc gửi lên server, bạn có thể xử lý thêm ở đây.
     }
 }
