@@ -57,7 +57,7 @@ ul, li {
 /* Main section */
 .main {
     flex: 1;
-    /* padding-bottom: 18px; */
+    padding-bottom: 18px;
     background-color: #77CDFF;
 }
 
