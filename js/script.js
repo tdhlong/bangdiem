@@ -123,6 +123,7 @@ function sortPlayers() {
 
 // Mở cửa sổ Edit người chơi
 function DisplayEdit() {
+    const placeholderLine = "Nhập tên người chơi";
     const editPopup = document.querySelector(".edit-popup");
     const editArea = document.querySelector(".edit-area");
     editPopup.style.display = "flex";
@@ -303,6 +304,133 @@ const defaultAvatars = [
     '🐊', '🐢', '🦎', '🐍', '🐉', '🦕', '🦖', '🐳', '🐬',
     '🐟', '🐠', '🐙', '🦀', '🦞', '🦐', '🦑',
 ];
+
+// Biến lưu tên người chơi hiện tại cần cập nhật avatar (để dùng khi mở modal)
+let currentPlayerNicknameForAvatar = null;
+
+// Hàm mở modal chọn avatar
+function openAvatarModal(playerNickname) {
+    currentPlayerNicknameForAvatar = playerNickname;
+    const modal = document.getElementById('avatarModal');
+    modal.style.display = "flex";
+    // Ẩn các phần upload và default trước
+    document.getElementById('uploadSection').style.display = "none";
+    document.getElementById('defaultAvatarSection').style.display = "none";
+}
+
+// Đóng modal
+document.getElementById('closeAvatarModal').addEventListener('click', () => {
+    document.getElementById('avatarModal').style.display = "none";
+});
+
+// Khi click vào nút "Tải ảnh lên"
+document.getElementById('uploadAvatarBtn').addEventListener('click', () => {
+    document.getElementById('uploadSection').style.display = "block";
+    document.getElementById('defaultAvatarSection').style.display = "none";
+    // Kích hoạt file input ngay lập tức (có thể sau một khoảng thời gian ngắn)
+    document.getElementById('avatarFileInput').click();
+});
+
+// Khi file input thay đổi
+document.getElementById('avatarFileInput').addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        const imageURL = URL.createObjectURL(file);
+        updatePlayerAvatar(currentPlayerNicknameForAvatar, imageURL);
+        closeAvatarModal();
+    }
+});
+
+// Khi click vào nút "Chọn avatar mặc định"
+document.getElementById('selectDefaultAvatarBtn').addEventListener('click', () => {
+    document.getElementById('defaultAvatarSection').style.display = "block";
+    document.getElementById('uploadSection').style.display = "none";
+    populateDefaultAvatars();
+});
+
+// Hàm hiển thị danh sách emoji mặc định trong modal
+function populateDefaultAvatars() {
+    const container = document.getElementById('defaultAvatarsContainer');
+    container.innerHTML = ""; // Xóa nội dung cũ nếu có
+    defaultAvatars.forEach(avatar => {
+        const span = document.createElement('span');
+        span.classList.add('default-avatar-item');
+        span.textContent = avatar;
+        span.addEventListener('click', () => {
+            updatePlayerAvatar(currentPlayerNicknameForAvatar, avatar);
+            closeAvatarModal();
+        });
+        container.appendChild(span);
+    });
+}
+
+// Hàm cập nhật avatar cho người chơi (cập nhật vào mảng players và DOM)
+function updatePlayerAvatar(playerNickname, newAvatar) {
+    // Cập nhật dữ liệu trong mảng players
+    const player = players.find(p => p.nickname === playerNickname);
+    if (player) {
+        player.avatar = newAvatar;
+    }
+    
+    // Tìm tất cả các phần tử người chơi trong DOM
+    const personElements = document.querySelectorAll(".person");
+    personElements.forEach(person => {
+        const nameEl = person.querySelector(".nickname");
+        if (nameEl && nameEl.textContent.trim() === playerNickname) {
+            const avatarEl = person.querySelector(".avatar");
+            if (avatarEl) {
+                // Kiểm tra nếu newAvatar là URL (ảnh) hay emoji
+                const isImage = newAvatar.startsWith('http') || newAvatar.startsWith('./') || newAvatar.startsWith('blob:');
+                
+                if (isImage) {
+                    // Nếu newAvatar là URL và phần tử hiện tại không phải là <img>
+                    if (avatarEl.tagName.toLowerCase() !== 'img') {
+                        // Tạo một thẻ <img> mới
+                        const newImg = document.createElement('img');
+                        newImg.classList.add('avatar');
+                        newImg.src = newAvatar;
+                        newImg.alt = playerNickname;
+                        // Thay thế phần tử cũ bằng phần tử mới
+                        avatarEl.parentNode.replaceChild(newImg, avatarEl);
+                    } else {
+                        // Nếu avatarEl là <img>, chỉ cần cập nhật src và alt
+                        avatarEl.src = newAvatar;
+                        avatarEl.alt = playerNickname;
+                    }
+                } else {
+                    // newAvatar là emoji
+                    if (avatarEl.tagName.toLowerCase() !== 'span') {
+                        // Tạo thẻ <span> mới
+                        const newSpan = document.createElement('span');
+                        newSpan.classList.add('avatar');
+                        newSpan.textContent = newAvatar;
+                        // Định dạng cho <span> (bạn có thể tùy chỉnh lại)
+                        newSpan.style.fontSize = "40px";
+                        newSpan.style.display = "inline-block";
+                        newSpan.style.width = "100px";
+                        newSpan.style.height = "63px";
+                        newSpan.style.backgroundColor = "#fff8dc";
+                        newSpan.style.textAlign = "center";
+                        newSpan.style.lineHeight = "60px";
+                        // Thay thế phần tử cũ bằng <span>
+                        avatarEl.parentNode.replaceChild(newSpan, avatarEl);
+                    } else {
+                        // Nếu avatarEl đã là <span>, cập nhật nội dung
+                        avatarEl.textContent = newAvatar;
+                    }
+                }
+            }
+        }
+    });
+}
+
+
+// Hàm đóng modal
+function closeAvatarModal() {
+    document.getElementById('avatarModal').style.display = "none";
+    // Reset file input để có thể tải lại file giống nhau nếu cần
+    document.getElementById('avatarFileInput').value = "";
+}
   
 // Mảng các giá trị cộng/trừ điểm
 const pointValues = {
@@ -312,39 +440,40 @@ const pointValues = {
   
 // Tạo người chơi dựa trên mảng có sẵn ở trên
 function createPlayerItem(player) {
-    // Tạo phần tử li cho mỗi người chơi
     const li = document.createElement('li');
     li.classList.add('person');
 
-    // Tạo thẻ ảnh đại diện
-    const avatarImg = document.createElement('img');
-    avatarImg.classList.add('avatar');
-    avatarImg.src = player.avatar;
-    avatarImg.alt = player.nickname;
+    // Tạo phần tử hiển thị avatar: nếu là URL thì dùng <img>, nếu không thì dùng <span>
+    let avatarEl;
+    if (player.avatar.startsWith('http') || player.avatar.startsWith('./') || player.avatar.startsWith('blob:')) {
+        // Nếu avatar là URL
+        avatarEl = document.createElement('img');
+        avatarEl.classList.add('avatar');
+        avatarEl.src = player.avatar;
+        avatarEl.alt = player.nickname;
+    } else {
+        // Nếu avatar là emoji, tạo thẻ <span>
+        avatarEl = document.createElement('span');
+        avatarEl.classList.add('avatar');
+        avatarEl.textContent = player.avatar;
+        // Định dạng cơ bản cho emoji (bạn có thể điều chỉnh CSS hoặc style trực tiếp)
+        avatarEl.style.fontSize = "40px";
+        avatarEl.style.display = "inline-block";
+        avatarEl.style.width = "100px";
+        avatarEl.style.height = "63px";
+        avatarEl.style.backgroundColor = "#fff8dc";
+        avatarEl.style.textAlign = "center";
+        avatarEl.style.lineHeight = "60px";
+    }
 
-    // Tạo input file ẩn để người dùng chọn ảnh mới
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.accept = 'image/*';
-    fileInput.style.display = 'none';
-
-    // Khi nhấp vào ảnh, kích hoạt input file
-    avatarImg.addEventListener('click', () => {
-        fileInput.click();
+    // Khi click vào avatar thì mở modal thay đổi avatar (dùng chung cho cả <img> và <span>)
+    avatarEl.addEventListener('click', () => {
+        openAvatarModal(player.nickname);
     });
 
-    // Khi người dùng chọn ảnh, cập nhật avatar và dữ liệu trong mảng players
-    fileInput.addEventListener('change', (event) => {
-        handleAvatarUpload(event, avatarImg, player.nickname);
-    });
+    li.appendChild(avatarEl);
 
-    // Thêm avatar và file input vào li
-    li.appendChild(avatarImg);
-
-    // Thêm fileInput
-    li.appendChild(fileInput);
-
-    // Tạo phần tên người chơi
+    // Tạo phần hiển thị tên người chơi
     const nicknameSpan = document.createElement('span');
     nicknameSpan.classList.add('nickname');
     nicknameSpan.textContent = player.nickname;
@@ -357,7 +486,7 @@ function createPlayerItem(player) {
     scoreBtn.setAttribute('onclick', 'fadeInOut(this)');
     li.appendChild(scoreBtn);
 
-    // Tạo phần danh sách nút cộng/trừ điểm
+    // Tạo danh sách nút cộng/trừ điểm (giữ nguyên cách tạo của bạn)
     const pointBtn = document.createElement('ul');
     pointBtn.classList.add('point-btn');
 
