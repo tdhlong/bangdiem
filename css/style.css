@@ -238,7 +238,6 @@ ul, li {
     right: 20px;
     bottom: 20px;
     cursor: pointer;
-    z-index: 10;
 }
 
 .edit-popup {
@@ -388,6 +387,24 @@ ul, li {
 }
 
 #second-place-image, #third-place-image {
+    bottom: 52%;
+}
+
+#first-place-emoji, #second-place-emoji, #third-place-emoji {
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    object-fit: contain;
+    border-radius: 8px;
+    width: 20%;
+    height: 20%;
+}
+
+#first-place-emoji {
+    bottom: 62%;
+}
+
+#second-place-emoji, #third-place-emoji {
     bottom: 52%;
 }
 

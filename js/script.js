@@ -243,35 +243,55 @@ document.querySelector(".end-popup").addEventListener("click", function(event) {
 // Cập nhật Avatar người chơi
 function updateLeaderboardImages() {
     // Lấy tất cả các phần tử "person" từ danh sách người chơi
-    const players = Array.from(document.querySelectorAll('.person'));
+    const playerElements = Array.from(document.querySelectorAll('.person'));
     
-    // Sắp xếp danh sách dựa trên điểm của từng đội
-    players.sort((a, b) => {
+    // Sắp xếp các phần tử theo điểm (giảm dần)
+    playerElements.sort((a, b) => {
         const scoreA = parseInt(a.querySelector('.score').textContent);
         const scoreB = parseInt(b.querySelector('.score').textContent);
         return scoreB - scoreA;
     });
+    
+    // Cập nhật thông tin cho top 3 người chơi
+    updateLeaderboardForPlace(playerElements[0], 'first');
+    updateLeaderboardForPlace(playerElements[1], 'second');
+    updateLeaderboardForPlace(playerElements[2], 'third');
+}
 
-    // Cập nhật hình ảnh cho vị trí thứ nhất, thứ hai và thứ ba
-    if (players[0]) {
-        const firstImageSrc = players[0].querySelector('.avatar').src;
-        const firstName = players[0].querySelector('.nickname').textContent;
-        document.getElementById('first-place-image').src = firstImageSrc;
-        document.querySelector('.first-place .winner-name-first').textContent = firstName;
+function updateLeaderboardForPlace(playerEl, place) {
+    if (!playerEl) return;
+    const avatarEl = playerEl.querySelector('.avatar');
+    const playerName = playerEl.querySelector('.nickname').textContent.trim();
+
+    // Xác định container hiển thị cho vị trí (ví dụ: "first")
+    const imgContainer = document.getElementById(place + '-place-image');
+    const emojiContainer = document.getElementById(place + '-place-emoji');
+
+    // Kiểm tra loại avatar: nếu avatarEl là <img> thì hiển thị ảnh, nếu là <span> thì hiển thị emoji
+    if (avatarEl.tagName.toLowerCase() === 'img') {
+        imgContainer.src = avatarEl.src;
+        imgContainer.style.display = "block";
+        emojiContainer.style.display = "none";
+        emojiContainer.textContent = "";
+    } else {
+        // Nếu là emoji, hiển thị container <span>
+        emojiContainer.textContent = avatarEl.textContent;
+        emojiContainer.style.display = "flex";
+        emojiContainer.style.backgroundColor = "#fff8dc";
+        imgContainer.style.display = "none";
+        imgContainer.src = "";
     }
-    if (players[1]) {
-        const secondImageSrc = players[1].querySelector('.avatar').src;
-        const secondName = players[1].querySelector('.nickname').textContent;
-        document.getElementById('second-place-image').src = secondImageSrc;
-        document.querySelector('.second-place .winner-name').textContent = secondName;
-    }
-    if (players[2]) {
-        const thirdImageSrc = players[2].querySelector('.avatar').src;
-        const thirdName = players[2].querySelector('.nickname').textContent;
-        document.getElementById('third-place-image').src = thirdImageSrc;
-        document.querySelector('.third-place .winner-name').textContent = thirdName;
+
+    // Cập nhật tên người chiến thắng
+    if (place === 'first') {
+        document.querySelector('.first-place .winner-name-first').textContent = playerName;
+    } else if (place === 'second') {
+        document.querySelector('.second-place .winner-name').textContent = playerName;
+    } else if (place === 'third') {
+        document.querySelector('.third-place .winner-name').textContent = playerName;
     }
 }
+
 
 // Danh sách các người chơi
 const players = [
@@ -379,21 +399,22 @@ function updatePlayerAvatar(playerNickname, newAvatar) {
         if (nameEl && nameEl.textContent.trim() === playerNickname) {
             const avatarEl = person.querySelector(".avatar");
             if (avatarEl) {
-                // Kiểm tra nếu newAvatar là URL (ảnh) hay emoji
+                // Cập nhật điều kiện nhận dạng blob URL
                 const isImage = newAvatar.startsWith('http') || newAvatar.startsWith('./') || newAvatar.startsWith('blob:');
                 
                 if (isImage) {
-                    // Nếu newAvatar là URL và phần tử hiện tại không phải là <img>
+                    // Nếu newAvatar là ảnh và phần tử hiện tại không phải <img>
                     if (avatarEl.tagName.toLowerCase() !== 'img') {
-                        // Tạo một thẻ <img> mới
                         const newImg = document.createElement('img');
                         newImg.classList.add('avatar');
                         newImg.src = newAvatar;
                         newImg.alt = playerNickname;
-                        // Thay thế phần tử cũ bằng phần tử mới
+                        // Gán lại sự kiện click để mở modal
+                        newImg.addEventListener('click', () => {
+                            openAvatarModal(playerNickname);
+                        });
                         avatarEl.parentNode.replaceChild(newImg, avatarEl);
                     } else {
-                        // Nếu avatarEl là <img>, chỉ cần cập nhật src và alt
                         avatarEl.src = newAvatar;
                         avatarEl.alt = playerNickname;
                     }
@@ -404,7 +425,6 @@ function updatePlayerAvatar(playerNickname, newAvatar) {
                         const newSpan = document.createElement('span');
                         newSpan.classList.add('avatar');
                         newSpan.textContent = newAvatar;
-                        // Định dạng cho <span> (bạn có thể tùy chỉnh lại)
                         newSpan.style.fontSize = "40px";
                         newSpan.style.display = "inline-block";
                         newSpan.style.width = "100px";
@@ -412,10 +432,12 @@ function updatePlayerAvatar(playerNickname, newAvatar) {
                         newSpan.style.backgroundColor = "#fff8dc";
                         newSpan.style.textAlign = "center";
                         newSpan.style.lineHeight = "60px";
-                        // Thay thế phần tử cũ bằng <span>
+                        // Gán lại sự kiện click cho newSpan
+                        newSpan.addEventListener('click', () => {
+                            openAvatarModal(playerNickname);
+                        });
                         avatarEl.parentNode.replaceChild(newSpan, avatarEl);
                     } else {
-                        // Nếu avatarEl đã là <span>, cập nhật nội dung
                         avatarEl.textContent = newAvatar;
                     }
                 }
@@ -423,6 +445,7 @@ function updatePlayerAvatar(playerNickname, newAvatar) {
         }
     });
 }
+
 
 
 // Hàm đóng modal
