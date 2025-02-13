@@ -177,7 +177,7 @@ function UpdateNamesAndScores() {
             
             // Kiểm tra xem trong mảng players có người chơi với tên này chưa
             const existingPlayer = players.find(p => p.nickname === name);
-            const avatar = existingPlayer ? existingPlayer.avatar : './img/no-image.jpeg';
+            const avatar = existingPlayer ? existingPlayer.avatar : defaultAvatars[Math.floor(Math.random() * defaultAvatars.length)];
             
             // Nếu người chơi chưa tồn tại, tạo mới và thêm vào mảng players
             if (!existingPlayer) {
@@ -376,10 +376,19 @@ function populateDefaultAvatars() {
         const span = document.createElement('span');
         span.classList.add('default-avatar-item');
         span.textContent = avatar;
-        span.addEventListener('click', () => {
-            updatePlayerAvatar(currentPlayerNicknameForAvatar, avatar);
-            closeAvatarModal();
-        });
+        
+        // Kiểm tra xem emoji đã được chọn cho người chơi nào chưa
+        const isUsed = players.some(p => p.avatar === avatar);
+        if (isUsed) {
+            // Nếu đã được chọn, thêm class 'used'
+            span.classList.add('used');
+        } else {
+            // Nếu chưa được chọn, thêm sự kiện click để chọn emoji
+            span.addEventListener('click', () => {
+                updatePlayerAvatar(currentPlayerNicknameForAvatar, avatar);
+                closeAvatarModal();
+            });
+        }
         container.appendChild(span);
     });
 }

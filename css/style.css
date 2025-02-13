@@ -490,6 +490,15 @@ ul, li {
     cursor: pointer;
     transition: transform 0.2s;
 }
+
+.default-avatar-item.used {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.default-avatar-item.used:hover {
+    transform: translate(0);
+}
   
 .default-avatar-item:hover {
     transform: scale(1.2);
